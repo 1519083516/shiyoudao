@@ -6,16 +6,16 @@
 				<image src="../../static/information/information.png"></image>
 				<image src="../../static/information/add.png"></image>
 			</view>
-			<dynamicNews2 v-for="user in users" :key="user.id" :user="user"></dynamicNews2>
+			<dynamicNews v-for="user in users" :key="user.id" :user="user" :isUserInfo="false"></dynamicNews>
 		</view>
 	</view>
 </template>
 
 <script>
-	import dynamicNews2 from '../../components/dynamicNews_2';
+	import dynamicNews from '../../components/dynamicNews';
 	export default {
 		components: {
-			dynamicNews2
+			dynamicNews
 		},
 		data() {
 			return {
@@ -27,6 +27,7 @@
 					img: [],
 					texts: ['点外卖当然健康啦'],
 					time: '2022年5月22日 下午 16:25',
+					zans: [],
 					remarks: [{
 						name: '张三',
 						comment: '不健康但是总比饿死好，嘿嘿!'
@@ -48,6 +49,27 @@
 						'食用各类水果和蔬菜。'
 					],
 					time: '2022年5月22日 上午 8:00',
+					zans: [{
+							userId: '001',
+							userName: '张三'
+						},
+						{
+							userId: '002',
+							userName: '李四'
+						},
+						{
+							userId: '003',
+							userName: '王五'
+						},
+						{
+							userId: '004',
+							userName: '马六'
+						},
+						{
+							userId: '005',
+							userName: '马大哈'
+						}
+					],
 					remarks: [{
 							name: '莉莉',
 							comment: '学到了!!!'
@@ -73,6 +95,23 @@
 					],
 					texts: ['冲冲冲！！'],
 					time: '2022年5月21日 下午 21:00',
+					zans: [{
+							userId: '001',
+							userName: '张三'
+						},
+						{
+							userId: '002',
+							userName: '李四'
+						},
+						{
+							userId: '003',
+							userName: '王五'
+						},
+						{
+							userId: '004',
+							userName: '马六'
+						},
+					],
 					remarks: [{
 							name: '知识就是力量',
 							comment: '看起来好有食欲呀！'

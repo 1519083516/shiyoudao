@@ -1,74 +1,35 @@
 <template>
 	<view class="wrapper">
 		<view class="main">
-			<!-- <searchBar /> -->
-			<uni-search-bar @confirm="" @input="" bgColor="#fff" radius="17" placeholder="低热量">
-				<template v-slot:searchIcon>
-					<image class="search-icon" src="../../static/index-icon/sousuo.png" />
-				</template>
-				<template v-slot:clearIcon>
-					<image class="search-icon" src="../../static/index-icon/sousuo.png" />
-				</template>
-			</uni-search-bar>
-			<flexBox />
-			<view class="title-wrapper">
-				<text class="title bold">热门话题</text>
-			</view>
+			<searchBar @confirm="" @input="" bgColor="#fff" radius="17" placeholder="低热量"></searchBar>
+			<appBar :boxes="appboxes"></appBar>
+			<Title text="热门话题"></Title>
 			<scrollTag :tags1="tags1" :tags2="tags2" />
-			<dynamicNews v-for="user in users" :key="user.id" :user="user"></dynamicNews>
+			<dynamicNews v-for="user in users" :key="user.id" :user="user" :isUserInfo="true"></dynamicNews>
 		</view>
 	</view>
 </template>
 
 <script>
-	import {
-		uniSearchBar
-	} from '@dcloudio/uni-ui';
-	import flexBox from '../../components/flexBox.vue';
+	import Title from '../../components/title';
+	import searchBar from '../../components/searchBar.vue';
+	import appBar from '../../components/appBar.vue';
 	import scrollTag from '../../components/scrollTag.vue';
 	import dynamicNews from '../../components/dynamicNews.vue';
 	export default {
 		components: {
-			// searchBar
-			uniSearchBar,
-			flexBox,
+			searchBar,
+			appBar,
 			scrollTag,
-			dynamicNews
+			dynamicNews,
+			Title
 		},
 		data() {
 			return {
-				tags1: [{
-						id: '001',
-						title: '#消暑良品推荐',
-						color: '#EDFDED'
-					},
-					{
-						id: '002',
-						title: '#味精的利弊',
-						color: '#FEEDEF'
-					},
-					{
-						id: '003',
-						title: '#每日一问',
-						color: '#FDE8FC'
-					}
-				],
-				tags2: [{
-						id: '004',
-						title: '#长期吃素的人',
-						color: '#EAFEFD'
-					},
-					{
-						id: '005',
-						title: '#辟谷',
-						color: '#FCFCD8'
-					},
-					{
-						id: '006',
-						title: '#点外卖健康吗',
-						color: '#EBE6FD'
-					}
-				],
+				appboxes:[],
+				tags1:[],
+				tags2:[],
+				tags:[],
 				users: [{
 					id: '001',
 					title: '进击的可可粉',
@@ -77,6 +38,7 @@
 					img: [],
 					texts: ['点外卖当然健康啦'],
 					time: '2022年5月22日 下午 16:25',
+					zans:[],
 					remarks:[
 						{
 							name:'张三',
@@ -100,6 +62,13 @@
 						'食用各类水果和蔬菜。'
 					],
 					time: '2022年5月22日 上午 8:00',
+					zans:[
+						{userId:'001',userName:'张三'},
+						{userId:'002',userName:'李四'},
+						{userId:'003',userName:'王五'},
+						{userId:'004',userName:'马六'},
+						{userId:'005',userName:'马大哈'}
+					],
 					remarks:[
 						{
 							name:'莉莉',
@@ -126,6 +95,12 @@
 					],
 					texts: ['冲冲冲！！'],
 					time: '2022年5月21日 下午 21:00',
+					zans:[
+						{userId:'001',userName:'张三'},
+						{userId:'002',userName:'李四'},
+						{userId:'003',userName:'王五'},
+						{userId:'004',userName:'马六'},
+					],
 					remarks:[
 						{
 							name:'知识就是力量',
@@ -139,14 +114,33 @@
 				}]
 			}
 		},
-		onLoad() {},
+		onLoad() {
+			this.getAppBoxes()
+			this.getTags()
+		},
+		methods:{
+			getAppBoxes(){
+				this.$api.get_appboxes({}).then(res => {
+					console.log('result',res)
+					const {data} = res
+					console.log('data',data)
+					this.appboxes = data
+				})
+			},
+			
+			getTags(){
+				this.$api.get_tags({}).then(res => {
+					console.log('result',res)
+					const {data} = res
+					console.log('data',data)
+					this.tags1 = data[0].details
+					this.tags2 = data[1].details
+				})
+			}
+		}
 	}
 </script>
 
 <style scoped>
-	.search-icon {
-		width: 40rpx;
-		height: 40rpx;
-		padding-right: 15rpx;
-	}
+
 </style>

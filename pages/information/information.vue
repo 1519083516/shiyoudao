@@ -3,8 +3,8 @@
 		<view class="main">
 			<view class="header">
 				<text class="bold title">消息通知</text>
-				<image src="../../static/information/add.png"></image>
-				<image src="../../static/information/search.png"></image>
+				<image src="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-6bbc8131-92b5-4a74-bbbd-fe943e8403ec/124b28b2-e410-45b8-8a86-e37e8bdedd39.png"></image>
+				<image src="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-6bbc8131-92b5-4a74-bbbd-fe943e8403ec/d3e30087-44b1-40ab-8e1b-f8a836857a3b.png"></image>
 			</view>
 			<view class="content">
 				<view class="new-infos radius" v-for="newInfo in newInfos">

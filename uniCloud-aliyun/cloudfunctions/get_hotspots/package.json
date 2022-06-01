@@ -1,0 +1,7 @@
+{
+  "name": "get_hotspots",
+  "dependencies": {},
+  "extensions": {
+    "uni-cloud-jql": {}
+  }
+}

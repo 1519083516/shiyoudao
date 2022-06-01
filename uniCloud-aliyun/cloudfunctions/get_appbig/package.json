@@ -1,0 +1,7 @@
+{
+  "name": "get_appbig",
+  "dependencies": {},
+  "extensions": {
+    "uni-cloud-jql": {}
+  }
+}

@@ -1,21 +1,19 @@
 <template>
 	<view class="wrapper">
-		<view class="header">
-			<view class="ellipse">
-			</view>
+		<canvas class="header" canvas-id="header" >
+			<!-- <view class="ellipse">
+			</view> -->
 			<view class="header-info">
-				<view class="logo">
-					<image src="../../static/me/logo.png"></image>
+				<view class="logo" @click="updateImg">
+					<image :src="src"></image>
 				</view>
 				<view class="text">
 					<view class="huiyuan">
 						<text class="title">食有道官方</text>
-						<image src="../../static/me/huiyuan@2x.png"></image>
-						<text class="block-no">1</text>
+						<image src="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-6bbc8131-92b5-4a74-bbbd-fe943e8403ec/63b4e546-99b0-4fbc-8223-025bc8542821.png"></image>
 					</view>
-					<text class="block-yes" style="color: #959595;">ID : 12401220511</text>
-					<text class="block-yes"
-						style="color: #040303;">关注&nbsp;&nbsp;11&nbsp;&nbsp;&nbsp;粉丝&nbsp;&nbsp;102</text>
+					<text style="color: #959595;">ID : 12401220511</text>
+					<text style="color: #040303;">关注&nbsp;&nbsp;11&nbsp;&nbsp;&nbsp;粉丝&nbsp;&nbsp;102</text>
 				</view>
 				<view class="setting">
 					<uni-icons custom-prefix="iconfont" type="icon-shezhi" size="32" color="#707070"></uni-icons>
@@ -27,7 +25,7 @@
 				<uni-icons custom-prefix="iconfont" type="icon-lishi" size="30" color="#707070"></uni-icons>
 				<uni-icons type="wallet" size="30" color="#707070"></uni-icons>
 			</view>
-		</view>
+		</canvas>
 		<view class="main">
 			<view class="opts-wrapper radius">
 				<view class="opt" v-for="opt in opts" :key="opt.id">
@@ -49,6 +47,7 @@
 	export default {
 		data() {
 			return {
+				src:'https://vkceyugu.cdn.bspapp.com/VKCEYUGU-6bbc8131-92b5-4a74-bbbd-fe943e8403ec/82214d44-5279-4004-b896-ee30114b6535.png',
 				opts: [{
 						id: '001',
 						type: 'icon-Diagnosis-sheet',
@@ -133,13 +132,60 @@
 				]
 			}
 		},
-		methods: {}
+		methods: {
+			updateImg(){
+				// uniCloud.callFunction({
+				// 	name:"get_search",
+				// 	data:{
+				// 		name:"huochangliang",
+				// 		age:"31"
+				// 	},
+				// 	success(res){
+						
+				// 	},
+				// 	fail() {
+						
+				// 	}
+				// })
+				// 上传图片
+				// 选择图片
+				let self = this
+				uni.chooseImage({
+					count:1,
+					success(res) {
+						console.log(res)
+						if(res.tempFilePaths.length>0){
+							let filePath = res.tempFilePaths[0]
+							// 进行上传操作
+							uniCloud.uploadFile({
+								filePath:filePath,
+								cloudPath:'headportraits'+self.id+'.png',
+								// onUploadProgress(progressEvent) {
+								// 	console.log(progressEvent)
+								// 	let percentCompleted = Math.round((progressEvent.loaded*100)/progressEvent.total)
+								// },
+								success(res){
+									console.log('成功的返回',res)
+									self.src = res.fileID
+									
+								},
+								fail(err){
+									console.log('失败的返回',err)
+								}
+							})
+						}
+					},
+					fail(err) {
+						console.log(err)
+					}
+				})
+			}
+		}
 	}
 </script>
 
 <style scoped lang="scss">
 	.wrapper {
-
 		/* 头部 */
 		.header {
 			height: 360rpx;
@@ -148,75 +194,84 @@
 
 
 			/* 椭圆背景 */
-			.ellipse {
-				position: absolute;
-				height: 500rpx;
-				width: 240%;
-				/* 居中 */
-				left: calc(50% - 120%);
-				top: -140rpx;
-				background-color: #CAFF66;
-				border-radius: 50%;
-			}
+			// .ellipse {
+			// 	position: absolute;
+			// 	height: 500rpx;
+			// 	width: 240%;
+			// 	/* 居中 */
+			// 	left: calc(50% - 120%);
+			// 	top: -140rpx;
+			// 	background-color: #CAFF66;
+			// 	border-radius: 50%;
+			// }
 
-			/* 头部信息 */
+			/* 头部信息*/
 			.header-info {
 				position: relative;
+				display: flex;
+				flex-direction: row;
+				align-items: center;
+				justify-content: space-between;
 				height: 220rpx;
 
 				.logo {
-					width: 136rpx;
-					height: 136rpx;
-					position: absolute;
-					top: 52rpx;
-					left: 48rpx;
+					display: flex;
+					flex-direction: row;
+					justify-content: center;
+					align-items: center;
+					// border-radius: 50%;
+					overflow: hidden;
+					width: 220rpx;
+					height: 220rpx;
+					// position: absolute;
+					// top: 52rpx;
+					// left: 48rpx;
 
 					image {
+						border-radius: 50%;
 						width: 136rpx;
 						height: 136rpx;
 					}
 				}
 
 				.text {
-					position: relative;
-					left: 220rpx;
-					top: 64rpx;
-
+					// 没有relative文字会消失
+					// position: relative;
+					// left: 220rpx;
+					// top: 64rpx;
+					margin-right: 180rpx;
+					display: flex;
+					flex-direction: column;
+					justify-content: center;
+					height: 220rpx;
 					.huiyuan {
-						position: relative;
-
+						height: 50rpx;
+						display: flex;
+						flex-direction: row;
+						align-items: center;
 						.title {
 							color: #080808;
 							font-size: 20px;
 							margin-right: 10rpx;
 						}
-
 						image {
-							width: 28rpx;
-							height: 28rpx;
-						}
-
-						.block-no {
-							font-size: 12px;
-							color: #FFC61C;
-							position: absolute;
-							left: 236rpx;
-							bottom: 6rpx;
+							width: 44rpx;
+							height: 44rpx;
 						}
 					}
-
-					.block-yes {
-						display: block;
+					text{
 						font-size: 13px;
-						margin-top: 6rpx;
+						padding-top: 10rpx;
 					}
-
 				}
 
 				.setting {
-					position: absolute;
-					right: 36rpx;
-					top: 68rpx;
+					// position: absolute;
+					// overflow: hidden;
+					// display: inline-block;
+					// right: 36rpx;
+					// top: 68rpx;
+					margin-right: 20rpx;
 				}
 
 			}

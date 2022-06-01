@@ -1,10 +1,6 @@
 {
 	"easycom": {
-		"autoscan": true,
-		"custom": {
-			// uni-ui 规则如下配置
-			"^uni-(.*)": "@dcloudio/uni-ui/lib/uni-$1/uni-$1.vue"
-		}
+		"^u-(.*)": "@/uview-ui/components/u-$1/u-$1.vue"
 	},
 	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
 		{
@@ -30,7 +26,16 @@
 			"style": {
 				"enablePullDownRefresh": false
 			}
-		}],
+		}    ,{
+            "path" : "pages/searchDetails/searchDetails",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+    ],
 		"tabBar": {
 			"color": "#C7C7C7",
 			"selectedColor": "#515151",
@@ -39,28 +44,28 @@
 			"fontSize": "10px",
 			"list": [{
 				"pagePath": "pages/index/index",
-				"iconPath": "static/topbar-icon/index_0.png",
-				"selectedIconPath": "static/topbar-icon/index_1.png",
+				"iconPath": "https://vkceyugu.cdn.bspapp.com/VKCEYUGU-6bbc8131-92b5-4a74-bbbd-fe943e8403ec/ab55286f-84a5-479a-8b72-a6e7a8c25e61.png",
+				"selectedIconPath": "https://vkceyugu.cdn.bspapp.com/VKCEYUGU-6bbc8131-92b5-4a74-bbbd-fe943e8403ec/b3472203-afae-4d26-87df-b22968784d5a.png",
 				"text": "首页"
 			}, {
 				"pagePath": "pages/application/application",
-				"iconPath": "static/topbar-icon/application_0.png",
-				"selectedIconPath": "static/topbar-icon/application_1.png",
+				"iconPath": "https://vkceyugu.cdn.bspapp.com/VKCEYUGU-6bbc8131-92b5-4a74-bbbd-fe943e8403ec/da16ead1-3c9e-4ba2-82c3-82faa29c21ad.png",
+				"selectedIconPath": "https://vkceyugu.cdn.bspapp.com/VKCEYUGU-6bbc8131-92b5-4a74-bbbd-fe943e8403ec/ef20f80e-e06e-4552-ba56-beb8c032d56b.png",
 				"text": "应用"
 			}, {
 				"pagePath": "pages/space/space",
-				"iconPath": "static/topbar-icon/space_0.png",
-				"selectedIconPath": "static/topbar-icon/space_1.png",
+				"iconPath": "https://vkceyugu.cdn.bspapp.com/VKCEYUGU-6bbc8131-92b5-4a74-bbbd-fe943e8403ec/186846fe-6fee-4fc3-93e1-3c5b8cfd493c.png",
+				"selectedIconPath": "https://vkceyugu.cdn.bspapp.com/VKCEYUGU-6bbc8131-92b5-4a74-bbbd-fe943e8403ec/cc52d2f6-e04e-457a-a02f-529303dd6afe.png",
 				"text": "空间"
 			},{
 				"pagePath": "pages/information/information",
-				"iconPath": "static/topbar-icon/information_0.png",
-				"selectedIconPath": "static/topbar-icon/information_1.png",
+				"iconPath": "https://vkceyugu.cdn.bspapp.com/VKCEYUGU-6bbc8131-92b5-4a74-bbbd-fe943e8403ec/6f28c4e2-9537-422b-88e1-2186f10bb8b2.png",
+				"selectedIconPath": "https://vkceyugu.cdn.bspapp.com/VKCEYUGU-6bbc8131-92b5-4a74-bbbd-fe943e8403ec/f38758d7-257e-4d5c-801d-02879f5602f4.png",
 				"text": "消息"
 			}, {
 				"pagePath": "pages/me/me",
-				"iconPath": "static/topbar-icon/me_0.png",
-				"selectedIconPath": "static/topbar-icon/me_1.png",
+				"iconPath": "https://vkceyugu.cdn.bspapp.com/VKCEYUGU-6bbc8131-92b5-4a74-bbbd-fe943e8403ec/edb51452-a919-45dd-bdf0-c0e1105c5e1b.png",
+				"selectedIconPath": "https://vkceyugu.cdn.bspapp.com/VKCEYUGU-6bbc8131-92b5-4a74-bbbd-fe943e8403ec/f8260771-af89-4ed5-a198-adb3f020c0f7.png",
 				"text": "我的"
 			}]
 		},

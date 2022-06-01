@@ -1,0 +1,7 @@
+{
+  "name": "get_boxnoimg",
+  "dependencies": {},
+  "extensions": {
+    "uni-cloud-jql": {}
+  }
+}

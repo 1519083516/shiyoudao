@@ -1,0 +1,7 @@
+{
+  "name": "get_appboxes",
+  "dependencies": {},
+  "extensions": {
+    "uni-cloud-jql": {}
+  }
+}

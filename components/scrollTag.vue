@@ -47,7 +47,7 @@
 			font-size: 15px;
 			margin-right: 16rpx;
 			display: inline-block;
-			border-radius: 35rpx;
+			border-radius: 34rpx;
 			height: 90rpx;
 			line-height: 90rpx;
 			text-align: center;
